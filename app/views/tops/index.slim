@@ -1,22 +1,10 @@
-#header
-  #content
-    #left_content
-      | Flat Plat
-    #right_content
-      .button
-        = link_to "#" do
-          | ログイン
-      .button
-        = link_to "#" do
-          | 新規登録
-
 #first_content
   #message-title
     | ひとりぼっちの一人旅に、さようなら。
   #message-body
     | Flat Platは、あなたと同じ時、同じ場所にいる旅人を探し、マッチングします。
   .button
-    = link_to "#" do
+    = link_to new_plan_path do
       | 旅行のプランを立てる
 
 .content
@@ -79,7 +67,7 @@
   .content_title
     | あなたの旅を彩る準備をしましょう。
   .button
-    = link_to "#" do
+    = link_to new_plan_path do
       | 旅行のプランを立てる
 .content.dark_bg
   #footer

@@ -15,6 +15,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'dotenv-rails'
 gem 'slim-rails'
+gem 'webpacker', github: 'rails/webpacker'
 
 
 group :development, :test do

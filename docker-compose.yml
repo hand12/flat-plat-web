@@ -1,4 +1,4 @@
-version: '2'
+version: '3.2'
 services:
   db:
     image: mysql
@@ -13,3 +13,12 @@ services:
       - "3001:3001"
     depends_on:
       - db
+  node:
+    image: node:8.2.1
+    volumes:
+      - .:/var/app:cached
+      - /var/app/node_modules
+    working_dir: /var/app
+    command: [sh, -c, yarn install]
+    depends_on:
+      - web

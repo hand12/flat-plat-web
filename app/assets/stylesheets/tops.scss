@@ -1,6 +1,7 @@
 $header-border-color: #ddd;
 $border-color: #ccc;
 $main-color: #eb8012;
+$gradiation-main-color: #D5302A;
 $complementary-color: #5EA598;
 $font-color: #666;
 $background-color: #eee;
@@ -55,7 +56,7 @@ a {
         margin: 0 20px;
         padding: 10px 20px;
         border-radius: 22px;
-        background: linear-gradient(-135deg, $main-color, lighten($main-color, 10));
+        background: linear-gradient(-135deg, $main-color, $gradiation-main-color);
         transition: 0.3s;
         &:hover {
           cursor: pointer;
@@ -108,7 +109,7 @@ a {
   .button {
     margin: 0 auto;
     margin-top: 50px;
-    background: linear-gradient(180deg, $main-color, lighten($main-color, 10));
+    background: linear-gradient(135deg, $main-color, $gradiation-main-color);
     color: white;
     font-size: 20px;
     padding: 20px;
@@ -119,7 +120,7 @@ a {
     transition-duration: 0.2s;
     &:hover {
       cursor: pointer;
-      background: linear-gradient(180deg, darken($main-color, 5), $main-color);
+      background: linear-gradient(-135deg, $main-color, $gradiation-main-color);
     }
   }
 }
@@ -150,19 +151,35 @@ a {
     font-size: 16px;
   }
   .button {
+    position: relative;
+    font-weight: bold;
     margin: 30px auto;
     display: inline-block;
     text-align: center;
     padding: 20px 40px;
     border-radius: 50px;
-    font-size: 36px;
-    background: linear-gradient(135deg, $main-color, darken($main-color, 10));
+    font-size: 32px;
+    background: linear-gradient(-135deg, $main-color, $gradiation-main-color);
     box-shadow: 0 1px 4px 0 #999;
     transition: 0.3s;
+    overflow: hidden;
     &:hover {
       box-shadow: none;
-      background: linear-gradient(-135deg, $main-color, lighten($main-color, 10));
+      background: linear-gradient(135deg, $main-color, $gradiation-main-color);
       cursor: pointer;
+    }
+    &:after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      content: '';
+      width: 10px;
+      height: 10px;
+      border-radius: 5px;
+      background-color: #444;
+      animation-name: button;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
     }
   }
   @media screen and (max-width: 960px) {
@@ -251,5 +268,79 @@ a {
   justify-content: center;
   .text_box {
     margin: 0 50px;
+  }
+}
+
+@keyframes button {
+  from { transform: scale(1); opacity: 0.1}
+  to { transform: scale(20); opacity: 0}
+}
+
+
+#left_box {
+  // color: white;
+  position: fixed;
+  z-index: -10;
+  width: 400px;
+  height: 100vh;
+  box-sizing: border-box;
+  box-shadow: 1px 0 1px 1px #ccc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  #profile_box {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    #image_box {
+      position: relative;
+      margin: 0 auto;
+      $image_size: 250px;
+      width: $image_size;
+      height: $image_size;
+      border-radius: $image_size / 2;
+      img {
+        width: inherit;
+        height: inherit;
+        border-radius: inherit;
+        object-fit: cover;
+      }
+      // &:after {
+      //   z-index: -1;
+      //   position: absolute;
+      //   top: -5px;
+      //   left: -5px;
+      //   border-radius: calc(#{$image_size} + 10px);
+      //   content: '';
+      //   width: calc(#{$image_size} + 10px);
+      //   height: calc(#{$image_size} + 10px);
+      //   background: linear-gradient(135deg, $main-color, darken($main-color, 10));
+      //   box-shadow: 0 1px 2px 1px #999;
+      // }
+    }
+    #name_field {
+      color: white;
+      display: inline-block;
+      margin: 30px auto;
+      padding: 10px 30px;
+      text-align: center;
+      border-radius: 50px;
+      // background-color: white;
+      background: linear-gradient(-135deg, lighten($main-color, 10), lighten($gradiation-main-color, 10));
+      position: relative;
+      &:after {
+        z-index: -1;
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        border-radius: inherit;
+        content: '';
+        width: calc(100% + 10px);
+        height: calc(100% + 10px);
+        background: linear-gradient(-135deg, darken($main-color, 5), darken($gradiation-main-color, 5));
+        // box-shadow: 0 1px 2px 1px #999;
+      }
+    }
   }
 }
