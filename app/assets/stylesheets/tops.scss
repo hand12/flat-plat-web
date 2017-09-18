@@ -5,6 +5,7 @@ $gradiation-main-color: #D5302A;
 $complementary-color: #5EA598;
 $font-color: #666;
 $background-color: #eee;
+$background-color-block: #343744;
 
 @mixin clearfix() {
   &:after {
@@ -152,7 +153,6 @@ a {
   }
   .button {
     position: relative;
-    font-weight: bold;
     margin: 30px auto;
     display: inline-block;
     text-align: center;
@@ -278,7 +278,7 @@ a {
 
 
 #left_box {
-  // color: white;
+  background: $background-color-block;
   position: fixed;
   z-index: -10;
   width: 400px;
@@ -327,7 +327,7 @@ a {
       text-align: center;
       border-radius: 50px;
       // background-color: white;
-      background: linear-gradient(-135deg, lighten($main-color, 10), lighten($gradiation-main-color, 10));
+      // background: linear-gradient(-135deg, lighten($main-color, 10), lighten($gradiation-main-color, 10));
       position: relative;
       &:after {
         z-index: -1;
@@ -341,6 +341,108 @@ a {
         background: linear-gradient(-135deg, darken($main-color, 5), darken($gradiation-main-color, 5));
         // box-shadow: 0 1px 2px 1px #999;
       }
+    }
+    #introduce_field {
+      color: white;
+      padding: 10px;
+      &:after {
+        display: block;
+        margin: 10px auto;
+        content: '';
+        width: 200px;
+        height: 1px;
+        background: linear-gradient(135deg, $main-color, $gradiation-main-color);
+      }
+    }
+    #hobby_tags {
+      padding: 10px;
+      text-align: left;
+      .tag {
+        position: relative;
+        display: inline-block;
+        padding: 5px 15px;
+        margin-right: 10px;
+        color: $gradiation-main-color;
+        background-color: white;
+        // background: linear-gradient(-135deg, lighten($main-color, 10), lighten($gradiation-main-color, 10));
+        // -webkit-text-fill-color: transparent;
+        // -webkit-background-clip: text;
+        border-radius: 18px;
+        &:after {
+          z-index: -1;
+          content: '';
+          position: absolute;
+          width: calc(100% + 2px);
+          height: calc(100% + 2px);
+          border-radius: inherit;
+          background: linear-gradient(-135deg, darken($main-color, 5), darken($gradiation-main-color, 5));
+          top: -1px;
+          left: -1px;
+        }
+      }
+    }
+  }
+}
+
+#right_box {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: fixed;
+  left: 400px;
+  height: 100vh;
+  width: calc(100vw - 400px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: lighten($background-color-block, 70);
+  overflow-x: scroll;
+  #content {
+    margin: 0 auto;
+    box-sizing: border-box;
+    width: 900px;
+    height: 700px;
+    #top_menu {
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .botton {
+        box-sizing: border-box;
+        position: relative;
+        font-size: 24px;
+        padding: 10px 20px;
+        background-color: white;
+        // border-bottom: 5px solid $main-color;
+        background: white;
+        box-shadow: 0 1px 3px 1px #999;
+        transition: 0.3s;
+        &:after {
+          position: absolute;
+          box-sizing: border-box;
+          bottom: 0;
+          left: 0;
+          content: '';
+          display: block;
+          width: 100%;
+          height: 5px;
+          background: linear-gradient(-135deg, darken($main-color, 5), darken($gradiation-main-color, 5));
+        }
+        &:hover {
+          cursor: pointer;
+          color: white;
+          box-shadow: none;
+          background: linear-gradient(-135deg, darken($main-color, 5), darken($gradiation-main-color, 5));
+        }
+      }
+    }
+    #main_container {
+      box-sizing: border-box;
+      width: 100%;
+      margin-top: 20px;
+      background-color: white;
+      height: 600px;
     }
   }
 }
