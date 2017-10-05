@@ -300,20 +300,13 @@ button{
   to { transform: scale(20); opacity: 0}
 }
 
-@keyframes button-background-gradiation {
-  from { background: linear-gradient(135deg, $main-color, $gradiation-main-color);}
-  to { background: linear-gradient(0, $main-color, $gradiation-main-color);}
-}
-
-
 #left_box {
   background: $background-color-block;
   position: fixed;
-  z-index: -10;
   width: 400px;
   height: 100vh;
   box-sizing: border-box;
-  box-shadow: 1px 0 1px 1px #ccc;
+  border-right: 5px solid $border-color;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -473,7 +466,9 @@ button{
       height: 100%;
       margin-top: 20px;
       background-color: white;
+      box-shadow: 0 4px 16px 4px #ccc;
       height: 600px;
+      text-align: center;
       #place_field {
         @include input_field();
       }
@@ -608,10 +603,7 @@ button{
         cursor: pointer;
         border-radius: 50px;
         transition: 0.3s;
-        animation-name: button-background-gradiation;
-        animation-duration: 1s;
-        animation-fill-mode: forwards;
-        animation-iteration-count: infinite;
+        background: linear-gradient(135deg, $main-color, $gradiation-main-color);
         &:hover {
           transform: scale(1.05);
         }
