@@ -23,7 +23,7 @@ $background-color-block: #343744;
   input {
     width: 100%;
     color: $font-color;
-    font-size: 42px;
+    font-size: 24px;
     border-style: none;
     padding-bottom: 5px;
     outline: none;
@@ -300,312 +300,315 @@ button{
   to { transform: scale(20); opacity: 0}
 }
 
-#left_box {
-  background: $background-color-block;
-  position: fixed;
-  width: 400px;
-  height: 100vh;
-  box-sizing: border-box;
-  border-right: 5px solid $border-color;
+#content_box {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  #profile_box {
-    width: 100%;
-    padding: 20px;
+  flex-direction: row;
+  justify-content: start;
+  align-items: stretch;
+  $left_box_width: 400px;
+  #left_box {
+    z-index: -10;
+    background: $background-color-block;
+    width: $left_box_width;
+    height: 100vh;
     box-sizing: border-box;
-    text-align: center;
-    #image_box {
-      position: relative;
-      margin: 0 auto;
-      $image_size: 250px;
-      width: $image_size;
-      height: $image_size;
-      border-radius: $image_size / 2;
-      img {
-        width: inherit;
-        height: inherit;
-        border-radius: inherit;
-        object-fit: cover;
-      }
-      // &:after {
-      //   z-index: -1;
-      //   position: absolute;
-      //   top: -5px;
-      //   left: -5px;
-      //   border-radius: calc(#{$image_size} + 10px);
-      //   content: '';
-      //   width: calc(#{$image_size} + 10px);
-      //   height: calc(#{$image_size} + 10px);
-      //   background: linear-gradient(135deg, $main-color, darken($main-color, 10));
-      //   box-shadow: 0 1px 2px 1px #999;
-      // }
-    }
-    #name_field {
-      color: white;
-      display: inline-block;
-      margin: 30px auto;
-      padding: 10px 30px;
+    border-right: 5px solid $border-color;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    #profile_box {
+      width: 100%;
+      padding: 20px;
+      box-sizing: border-box;
       text-align: center;
-      border-radius: 50px;
-      // background-color: white;
-      // background: linear-gradient(-135deg, lighten($main-color, 10), lighten($gradiation-main-color, 10));
-      position: relative;
-      &:after {
-        z-index: -1;
-        position: absolute;
-        top: -5px;
-        left: -5px;
-        border-radius: inherit;
-        content: '';
-        width: calc(100% + 10px);
-        height: calc(100% + 10px);
-        background: linear-gradient(-135deg, darken($main-color, 5), darken($gradiation-main-color, 5));
-        // box-shadow: 0 1px 2px 1px #999;
-      }
-    }
-    #introduce_field {
-      color: white;
-      padding: 10px;
-      &:after {
-        display: block;
-        margin: 10px auto;
-        content: '';
-        width: 200px;
-        height: 1px;
-        background: linear-gradient(135deg, $main-color, $gradiation-main-color);
-      }
-    }
-    #hobby_tags {
-      padding: 10px;
-      text-align: left;
-      .tag {
+      #image_box {
         position: relative;
+        margin: 0 auto;
+        $image_size: 250px;
+        width: $image_size;
+        height: $image_size;
+        border-radius: $image_size / 2;
+        img {
+          width: inherit;
+          height: inherit;
+          border-radius: inherit;
+          object-fit: cover;
+        }
+        // &:after {
+        //   z-index: -1;
+        //   position: absolute;
+        //   top: -5px;
+        //   left: -5px;
+        //   border-radius: calc(#{$image_size} + 10px);
+        //   content: '';
+        //   width: calc(#{$image_size} + 10px);
+        //   height: calc(#{$image_size} + 10px);
+        //   background: linear-gradient(135deg, $main-color, darken($main-color, 10));
+        //   box-shadow: 0 1px 2px 1px #999;
+        // }
+      }
+      #name_field {
+        color: white;
         display: inline-block;
-        padding: 5px 15px;
-        margin-right: 10px;
-        color: $gradiation-main-color;
-        background-color: white;
+        margin: 30px auto;
+        padding: 10px 30px;
+        text-align: center;
+        border-radius: 50px;
+        // background-color: white;
         // background: linear-gradient(-135deg, lighten($main-color, 10), lighten($gradiation-main-color, 10));
-        // -webkit-text-fill-color: transparent;
-        // -webkit-background-clip: text;
-        border-radius: 18px;
+        position: relative;
         &:after {
           z-index: -1;
-          content: '';
           position: absolute;
-          width: calc(100% + 2px);
-          height: calc(100% + 2px);
+          top: -5px;
+          left: -5px;
           border-radius: inherit;
+          content: '';
+          width: calc(100% + 10px);
+          height: calc(100% + 10px);
           background: linear-gradient(-135deg, darken($main-color, 5), darken($gradiation-main-color, 5));
-          top: -1px;
-          left: -1px;
+          // box-shadow: 0 1px 2px 1px #999;
+        }
+      }
+      #introduce_field {
+        color: white;
+        padding: 10px;
+        &:after {
+          display: block;
+          margin: 10px auto;
+          content: '';
+          width: 200px;
+          height: 1px;
+          background: linear-gradient(135deg, $main-color, $gradiation-main-color);
+        }
+      }
+      #hobby_tags {
+        padding: 10px;
+        text-align: left;
+        .tag {
+          position: relative;
+          display: inline-block;
+          padding: 5px 15px;
+          margin-right: 10px;
+          color: $gradiation-main-color;
+          background-color: white;
+          // background: linear-gradient(-135deg, lighten($main-color, 10), lighten($gradiation-main-color, 10));
+          // -webkit-text-fill-color: transparent;
+          // -webkit-background-clip: text;
+          border-radius: 18px;
+          &:after {
+            z-index: -1;
+            content: '';
+            position: absolute;
+            width: calc(100% + 2px);
+            height: calc(100% + 2px);
+            border-radius: inherit;
+            background: linear-gradient(-135deg, darken($main-color, 5), darken($gradiation-main-color, 5));
+            top: -1px;
+            left: -1px;
+          }
         }
       }
     }
   }
-}
-
-#right_box {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  position: fixed;
-  left: 400px;
-  height: 100vh;
-  width: calc(100vw - 400px);
-  min-width: 1200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background: lighten($background-color-block, 70);
-  overflow-x: scroll;
-  #content {
-    margin: 0 auto;
+  #right_box {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    width: 900px;
-    height: 700px;
-    #top_menu {
+    height: 100vh;
+    width: calc(100vw - #{$left_box_width});
+    // min-width: 1200px;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    background: lighten($background-color-block, 70);
+    overflow-x: scroll;
+    #content {
       margin: 0 auto;
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      .button {
-        box-sizing: border-box;
-        position: relative;
-        font-size: 24px;
-        padding: 10px 20px;
-        background-color: white;
-        // border-bottom: 5px solid $main-color;
-        background: white;
-        box-shadow: 0 1px 3px 1px #999;
-        transition: 0.3s;
-        &:after {
-          position: absolute;
-          box-sizing: border-box;
-          bottom: 0;
-          left: 0;
-          content: '';
-          display: block;
-          width: 100%;
-          height: 5px;
-          background: linear-gradient(-135deg, darken($main-color, 5), darken($gradiation-main-color, 5));
-        }
-        &:hover {
-          cursor: pointer;
-          color: white;
-          box-shadow: none;
-          background: linear-gradient(-135deg, darken($main-color, 5), darken($gradiation-main-color, 5));
-        }
-      }
-    }
-    #main_container {
       box-sizing: border-box;
-      width: 100%;
-      height: 100%;
-      margin-top: 20px;
-      background-color: white;
-      box-shadow: 0 4px 16px 4px #ccc;
-      height: 600px;
-      text-align: center;
-      #place_field {
-        @include input_field();
-      }
-      #date_field {
+      width: 900px;
+      height: 700px;
+      #top_menu {
         margin: 0 auto;
-        padding-top: 50px;
-        width: 500px;
-        border-bottom: 1px solid $gradiation-main-color;
+        width: 100%;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        .calendar {
-          margin: 0 auto;
-          width: 100%;
+        .button {
           box-sizing: border-box;
-          box-shadow: 0 2px 5px -1px #777;
-          .calendar-header {
-            box-sizing: border-box;
-            background: $main-color;
-            .calendar-year {
-              font-size: 10px;
-              font-weight: initial;
-              color: white;
-              text-align: left;
-              padding: 20px;
-              padding-bottom: 0;
-              box-sizing: border-box;
-            }
-            .calendar-month {
-              font-size: 20px;
-              color: white;
-              text-align: center;
-              padding: 10px;
-              box-sizing: border-box;
-            }
-            .calendar-weeks {
-              box-sizing: border-box;
-              font-weight: bold;
-              font-size: 10px;
-              display: flex;
-              flex-direction: row;
-              justify-content: space-between;
-              align-items: flex-end;
-              span {
-                padding-bottom: 10px;
-                color: white;
-                width: 100%;
-                text-align: center;
-                display: block;
-                box-sizing: border-box;
-                flex-grow: 1;
-              }
-            }
-          }
-          .calendar-main {
-            box-sizing: border-box;
-            background: white;
-            padding-bottom: 20px;
-            .week {
-              $week-height: 70px;
-              display: flex;
-              flex-direction: row;
-              justify-content: space-between;
-              span {
-                text-align: center;
-                height: $week-height;
-                line-height: $week-height;
-                box-sizing: border-box;
-                display: block;
-                flex-grow: 1;
-                border-radius: $week-height / 2;
-                input[type="checkbox"] {
-                  display: none;
-                }
-                &:hover {
-                  background: $background-color;
-                  cursor: pointer;
-                }
-              }
-            }
-          }
-        }
-        .date_container {
-          width: 50%;
-          padding-bottom: 10px;
-          box-sizing: border-box;
-          label {
-            font-size: 32px;
-            padding: 0 10px;
-            margin-bottom: 10px;
-          }
-          input {
-            position: relative;
-            color: lighten($font-color, 10);
-            margin-left: 10px;
-            font-size: 16px;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 20px;
-            background: $background-color;
-            outline: none;
-            &:hover {
-              cursor: pointer;
-            }
-          }
-          input[type="date"]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-          }
-          input[type="date"]::-webkit-calendar-picker-indicator {
-            background: black;
+          position: relative;
+          font-size: 24px;
+          padding: 10px 20px;
+          background-color: white;
+          // border-bottom: 5px solid $main-color;
+          background: white;
+          box-shadow: 0 1px 3px 1px #999;
+          transition: 0.3s;
+          &:after {
             position: absolute;
-            opacity: 0;
-            top: 0;
+            box-sizing: border-box;
+            bottom: 0;
             left: 0;
+            content: '';
+            display: block;
             width: 100%;
-            height: 100%;
+            height: 5px;
+            background: linear-gradient(-135deg, darken($main-color, 5), darken($gradiation-main-color, 5));
+          }
+          &:hover {
+            cursor: pointer;
+            color: white;
+            box-shadow: none;
+            background: linear-gradient(-135deg, darken($main-color, 5), darken($gradiation-main-color, 5));
           }
         }
       }
-      #description_field {
-        @include input_field();
-        input {
-          font-size: 32px;
+      #main_container {
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        margin-top: 20px;
+        background-color: white;
+        box-shadow: 0 4px 16px 4px #ccc;
+        height: 600px;
+        #place_field {
+          @include input_field();
         }
-      }
-      .submit {
-        display: block;
-        margin: 80px auto 10px;
-        padding: 10px 50px;
-        font-size: 42px;
-        color: white;
-        cursor: pointer;
-        border-radius: 50px;
-        transition: 0.3s;
-        background: linear-gradient(135deg, $main-color, $gradiation-main-color);
-        &:hover {
-          transform: scale(1.05);
+        #date_field {
+          margin: 0 auto;
+          padding-top: 50px;
+          width: 500px;
+          border-bottom: 1px solid $gradiation-main-color;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          .calendar {
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+            box-shadow: 0 2px 5px -1px #777;
+            .calendar-header {
+              box-sizing: border-box;
+              background: $main-color;
+              .calendar-year {
+                font-size: 10px;
+                font-weight: initial;
+                color: white;
+                text-align: left;
+                padding: 20px;
+                padding-bottom: 0;
+                box-sizing: border-box;
+              }
+              .calendar-month {
+                font-size: 20px;
+                color: white;
+                text-align: center;
+                padding: 10px;
+                box-sizing: border-box;
+              }
+              .calendar-weeks {
+                box-sizing: border-box;
+                font-weight: bold;
+                font-size: 10px;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-end;
+                span {
+                  padding-bottom: 10px;
+                  color: white;
+                  width: 100%;
+                  text-align: center;
+                  display: block;
+                  box-sizing: border-box;
+                  flex-grow: 1;
+                }
+              }
+            }
+            .calendar-main {
+              box-sizing: border-box;
+              background: white;
+              padding-bottom: 20px;
+              .week {
+                $week-height: 70px;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                span {
+                  text-align: center;
+                  height: $week-height;
+                  line-height: $week-height;
+                  box-sizing: border-box;
+                  display: block;
+                  flex-grow: 1;
+                  border-radius: $week-height / 2;
+                  input[type="checkbox"] {
+                    display: none;
+                  }
+                  &:hover {
+                    background: $background-color;
+                    cursor: pointer;
+                  }
+                }
+              }
+            }
+          }
+          .date_container {
+            width: 50%;
+            padding-bottom: 10px;
+            box-sizing: border-box;
+            label {
+              font-size: 24px;
+              padding: 0 10px;
+              margin-bottom: 10px;
+            }
+            input {
+              position: relative;
+              color: lighten($font-color, 10);
+              margin-left: 10px;
+              font-size: 16px;
+              border: none;
+              padding: 5px 10px;
+              border-radius: 20px;
+              background: $background-color;
+              outline: none;
+              &:hover {
+                cursor: pointer;
+              }
+            }
+            input[type="date"]::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+            }
+            input[type="date"]::-webkit-calendar-picker-indicator {
+              background: black;
+              position: absolute;
+              opacity: 0;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+        #description_field {
+          @include input_field();
+          input {
+            font-size: 24px;
+          }
+        }
+        .submit {
+          display: block;
+          margin: 80px auto 10px;
+          padding: 10px 50px;
+          font-size: 24px;
+          color: white;
+          cursor: pointer;
+          border-radius: 50px;
+          transition: 0.3s;
+          background: linear-gradient(135deg, $main-color, $gradiation-main-color);
+          &:hover {
+            transform: scale(1.05);
+          }
         }
       }
     }

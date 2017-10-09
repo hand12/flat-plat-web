@@ -1,15 +1,16 @@
-#left_box
-  #profile_box
-    #image_box
-      = image_tag "profile.jpg"
-    #name_field
-      | Yusuke Yamashita (23)
-    #introduce_field
-      | 温泉と写真が好きです。旅先で美味しいものを食べるのが好きです。
-    #hobby_tags
-      .tag
-        | カメラ
-      .tag
-        | 釣り
-#right_box
-  = render partial: "myPage.html.erb"
+#content_box
+  #left_box
+    #profile_box
+      #image_box
+        = image_tag "profile.jpg"
+      #name_field
+        | Yusuke Yamashita (23)
+      #introduce_field
+        | 温泉と写真が好きです。旅先で美味しいものを食べるのが好きです。
+      #hobby_tags
+        .tag
+          | カメラ
+        .tag
+          | 釣り
+  #right_box
+    = render partial: "myPage.html.erb"

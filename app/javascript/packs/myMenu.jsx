@@ -8,10 +8,10 @@ import PropTypes from 'prop-types'
 import { Calendar } from './calendar.jsx'
 
 const Content = props => (
-  <div id="content">
-    {/* <TopMenu /> */}
-    <MainContainer />
-  </div>
+    <div id="content">
+      {/* <TopMenu /> */}
+      <MainContainer/>
+    </div>
 )
 
 const TopMenu = props => (
@@ -22,20 +22,29 @@ const TopMenu = props => (
   </div>
 )
 
-const MainContainer = props => (
-  <div id="main_container">
-    <form onSubmit={ console.log("送信") }>
-      <PlaceField />
-      <DateField />
-      <DescriptionField />
-      <button type="submit" className="submit">プランを投稿する</button>
-    </form>
-  </div>
-)
+const MainContainer = props => {
+  const handleSubmit = () => {
+    console.log("ほげ")
+  }
+
+  const setValue = (value) => {
+    console.log(value)
+  }
+  return (
+    <div id="main_container">
+      <form action="javascript:void(0)" onSubmit={ handleSubmit }>
+        <PlaceField setValue = { setValue } />
+        <DateField setValue = { setValue } />
+        <DescriptionField setValue = { setValue } />
+        <button type="submit" className="submit" >プランを投稿する</button>
+      </form>
+    </div>
+  )
+}
 
 const PlaceField = props => (
   <div id="place_field">
-    <input placeholder="どちらまで" />
+    <input placeholder="どちらまで" onChange = { e => props.setValue(e.target.value) } />
   </div>
 )
 
@@ -43,18 +52,18 @@ const DateField = props => (
   <div id="date_field">
     <div className="date_container">
       <label htmlFor="departure_date">いつから</label>
-      <input type="date" id="departure_date" />
+      <input type="date" id="departure_date" onChange = { e => props.setValue(e.target.value) } />
     </div>
     <div className="date_container">
       <label htmlFor="come_back_date">いつまで</label>
-      <input type="date" id="come_back_date" />
+      <input type="date" id="come_back_date" onChange = { e => props.setValue(e.target.value) } />
     </div>
   </div>
 )
 
 const DescriptionField = props => (
   <div id="description_field">
-    <input placeholder="どんな旅にしたいですか？" />
+    <input placeholder="どんな旅にしたいですか？" onChange = { e => props.setValue(e.target.value) } />
   </div>
 )
 
