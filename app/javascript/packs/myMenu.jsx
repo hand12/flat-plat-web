@@ -6,6 +6,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import { Calendar } from './calendar.jsx'
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 class Content extends React.Component {
   constructor(props) {
@@ -31,12 +32,22 @@ class Content extends React.Component {
   render(){
     return (
       <div id="content">
+        <BrowserRouter>
+          <Route exact path="/plans/home" component={ Home } />
+          {/* <Route exact path="/plans/new/" component={ MainContainer } /> */}
+        </BrowserRouter>
         {/* <TopMenu /> */}
         <MainContainer { ...this.state } onChangeField = { this.onChangeField } onSubmit = {this.onSubmit} />
       </div>
     )
   }
 }
+
+const Home = () => (
+  <div>
+    Home
+  </div>
+)
 
 const TopMenu = props => (
   <div id="top_menu">

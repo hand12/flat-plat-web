@@ -1,7 +1,4 @@
 class PlansController < ApplicationController
-  def new
-  end
-
-  def show
+  def top
   end
 end
