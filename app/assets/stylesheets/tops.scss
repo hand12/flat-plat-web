@@ -3,6 +3,7 @@ $border-color: #ccc;
 $main-color: #eb8012;
 $gradiation-main-color: #D5302A;
 $complementary-color: #5EA598;
+$complementary-gradi-color: #1b5e20;
 $font-color: #666;
 $background-color: #eee;
 $background-color-block: #343744;
@@ -28,6 +29,27 @@ $background-color-block: #343744;
     padding-bottom: 5px;
     outline: none;
   }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1 }
+  to { opacity: 0 }
+}
+
+@keyframes popUp {
+  0% { transform: translateY(800px) }
+  80% { transform: translateY(-50px); transform: scaleX(0.9); transform: scaleY(1.1) }
+  100% { transform: translateY(0); transform: scaleX(1); transform: scaleY(1) }
+}
+
+@keyframes button {
+  from { transform: scale(1); opacity: 0.1}
+  to { transform: scale(20); opacity: 0}
 }
 
 body {
@@ -293,11 +315,6 @@ button{
   .text_box {
     margin: 0 50px;
   }
-}
-
-@keyframes button {
-  from { transform: scale(1); opacity: 0.1}
-  to { transform: scale(20); opacity: 0}
 }
 
 #content_box {
@@ -596,6 +613,93 @@ button{
             font-size: 24px;
           }
         }
+        #confirm_modal {
+          animation-name: fadeIn;
+          animation-duration: 0.2s;
+          animation-timing-function: ease-in;
+          #modal_background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.6);
+          }
+          #confirm_content {
+            animation-name: popUp;
+            animation-duration: 0.5s;
+            animation-timing-function: ease;
+            position: fixed;
+            top: 150px;
+            width: 800px;
+            background: white;
+            border-radius: 2.5px;
+            box-shadow: 0 2px 8px #777;
+            padding: 50px;
+            text-align: center;
+            .confirm_title {
+              font-size: 32px;
+              &:after {
+                content: '';
+                width: 200px;
+                height: 2px;
+                background: linear-gradient(135deg, $main-color, $gradiation-main-color);
+                display: block;
+                margin: 0 auto;
+                margin-top: 10px;
+              }
+            }
+            .confirm_location {
+              width: 400px;
+              margin: 0 auto;
+              margin-top: 50px;
+              text-align: left;
+              border-bottom: 1px solid $main-color;
+              span {
+                font-size: 24px;
+                margin-right: 20px;
+                &:last-child {
+                  font-weight: bold;
+                  margin-right: 0;
+                }
+              }
+            }
+            .confirm_dates {
+              width: 400px;
+              margin: 0 auto;
+              margin-top: 50px;
+              text-align: left;
+              border-bottom: 1px solid $main-color;
+              span {
+                font-size: 24px;
+                margin-right: 20px;
+                &:last-child {
+                  font-size: 20px;
+                  font-weight: bold;
+                  margin-right: 0;
+                }
+              }
+            }
+            .confirm_description {
+              width: 400px;
+              margin: 0 auto;
+              margin-top: 50px;
+              text-align: left;
+              span {
+                font-size: 24px;
+                margin-right: 20px;
+                &:last-child {
+                  display: block;
+                  line-height: 36px;
+                  font-size: 20px;
+                  margin-right: 0;
+                  padding-bottom: 5px;
+                  border-bottom: 1px solid $main-color;
+                }
+              }
+            }
+          }
+        }
         .submit {
           display: block;
           margin: 80px auto 10px;
@@ -609,6 +713,13 @@ button{
           &:hover {
             transform: scale(1.05);
           }
+        }
+        .modal_submit {
+          display: inline-block;
+          margin: 50px 10px 0;
+        }
+        .cancel_button {
+          background: linear-gradient(135deg, $complementary-color, $complementary-gradi-color);
         }
       }
     }

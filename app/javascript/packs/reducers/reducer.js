@@ -10,7 +10,10 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ADDPLAN': {
-      return console.log(action.value)
+      console.log(action.value)
+      return Object.assign({}, state, {
+        plan: action.value,
+      });
     }
     default: {
       return state
