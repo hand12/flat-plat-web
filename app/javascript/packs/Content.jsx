@@ -47,7 +47,14 @@ class MainContainer extends React.Component {
   }
 
   onSubmit = () => {
-    this.props.addPlan(this.state)
+    var plan = {
+      location: this.state.location,
+      start_date: this.state.start_date,
+      finish_date: this.state.finish_date,
+      description: this.state.description
+    }
+    this.props.addPlan(plan)
+    this.props.fetchSample()
   }
 
   confirmModalToggle = () => {
@@ -61,14 +68,13 @@ class MainContainer extends React.Component {
   render() {
     return (
       <div id="main_container">
-        {/* <form action="javascript:void(0)" onSubmit = { this.onSubmit } > */}
         <form action="javascript:void(0)">
           <LocationField { ...this.props } onChangeField={ this.onChangeField } />
           <DateField { ...this.props } onChangeField={ this.onChangeField } />
           <DescriptionField { ...this.props } onChangeField={ this.onChangeField } />
           <button type="submit" className="submit" onClick={ this.confirmModalToggle }>プランを投稿する</button>
         </form>
-        <ConfirmModal { ...this.state } confirmModalToggle={ this.confirmModalToggle }/>
+        <ConfirmModal { ...this.state } confirmModalToggle={ this.confirmModalToggle } onSubmit={ this.onSubmit } />
       </div>
     )
   }
@@ -95,7 +101,7 @@ const DateField = props => (
 
 const DescriptionField = props => (
   <div id="description_field">
-    <input placeholder="どんな旅にしたいですか？" name="description" onChange={ props.onChangeField } />
+    <textarea rows="5" placeholder="どんな旅にしたいですか？" name="description" onChange={ props.onChangeField } />
   </div>
 )
 
@@ -111,18 +117,19 @@ class ConfirmModal extends React.Component {
             </h2>
             <div className="confirm_location">
               <span>場所:</span>
-              <span>北海道</span>
+              <span>{this.props.location}</span>
             </div>
             <div className="confirm_dates">
               <span>日程:</span>
-              <span>2017/10/27 - 2017/10/28</span>
+              <span>{this.props.start_date}</span>
+              <span>{this.props.finish_date}</span>
             </div>
             <div className="confirm_description">
               <span>一言:</span>
-              <span>楽しい旅行楽しい旅行楽しい旅行楽しい旅行楽しい旅行楽しい旅行楽しい旅行楽しい旅行楽しい旅行楽しい旅行楽しい旅行楽しい旅行楽しい旅行楽しい旅行楽しい旅行楽しい旅行楽しい旅行楽しい旅行楽しい旅行</span>
+              <span>{this.props.description}</span>
             </div>
             <button className="modal_submit submit cancel_button" onClick={ this.props.confirmModalToggle}>プランを修正する</button>
-            <button type="submit" className="modal_submit submit" >プランを投稿する</button>
+            <button type="submit" className="modal_submit submit" onClick={ this.props.onSubmit }>プランを投稿する</button>
           </div>
         </div>
       )
@@ -131,29 +138,5 @@ class ConfirmModal extends React.Component {
     }
   }
 }
-
-// const ConfirmModal = props => (
-//   <div id="confirm_modal">
-//     <div id="modal_background"></div>
-//     <div id="confirm_content">
-//       <h2 className="confirm_title">
-//         以下の内容でplanを投稿します。
-//       </h2>
-//       <div className="confirm_location">
-//         <span>場所:</span>
-//         <span>北海道</span>
-//       </div>
-//       <div className="confirm_dates">
-//         <span>日程:</span>
-//         <span>2017/10/27 - 2017/10/28</span>
-//       </div>
-//       <div className="confirm_description">
-//         <span>一言:</span>
-//         <span>楽しい旅行楽しい旅行楽しい旅行楽しい旅行楽しい旅行楽しい旅行楽しい旅行楽しい旅行楽しい旅行楽しい旅行楽しい旅行楽しい旅行楽しい旅行楽しい旅行楽しい旅行楽しい旅行楽しい旅行楽しい旅行楽しい旅行</span>
-//       </div>
-//       <button type="submit" className="submit" >プランを投稿する</button>
-//     </div>
-//   </div>
-// )
 
 export default Content

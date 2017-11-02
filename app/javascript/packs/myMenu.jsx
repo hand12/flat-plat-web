@@ -8,8 +8,15 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import App from './App.jsx'
 import reducer from './reducers/reducer'
+import thunkMiddleware from 'redux-thunk'
 
 const store = createStore(reducer)
+
+function configureStore() {
+  return createStore(
+    reducer, applyMiddleware(thunkMiddleware)
+  )
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
