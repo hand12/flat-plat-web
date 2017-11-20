@@ -1,30 +1,58 @@
-export const ADD_PLAN = 'ADD_PLAN'
-export const ADD_PLAN_SUCCESS = 'ADD_PLAN_SUCCESS'
-export const HOGE_HOGE = 'HOGE_HOGE'
+export const GET_PLAN = 'GET_PLAN'
+export const POST_PLAN = 'POST_PLAN'
+export const MODAL_TOGGLE = 'MODAL_TOGGLE'
 
 const Actions = {
-  addPlan(value) {
-    console.log("addPlanよばれた")
+  getPlan(value) {
     return {
-      type: ADD_PLAN,
-      value,
+      type: GET_PLAN,
+      value
     }
   },
-  addPlanSuccess() {
+  postPlan(value) {
     return {
-      type: ADD_PLAN_SUCCESS
+      type: POST_PLAN,
+      value
     }
   },
-  fetchSample(value) {
+  modalToggle(value) {
     return {
-      type: HOGE_HOGE,
-      value: fetchLocal()
+      type: MODAL_TOGGLE,
+      value
     }
   }
 }
 
-const fetchLocal = () => {
-  return fetch('http://localhost:3002/plans').then(response => (response.json))
-}
+// export const postData = (formData) => {
+//   console.log("postDate呼ばれた")
+//   const REQUEST_URL = "http://localhost:3002/plans"
+//   fetch(REQUEST_URL, {
+//     method: "POST",
+//     body: formData,
+//     mode: 'cors',
+//   })
+//   .then((response) => {
+//     if(!response.ok) {
+//       throw Error(response.statusText)
+//     }
+//     return response
+//   })
+//   .then((response) => (response.json()))
+//   .then((data) => {
+//     console.log("success")
+//     console.log(data)
+//   })
+//   .catch((err) => {
+//     console.log("fail")
+//     console.log(err)
+//     // alert(err)
+//   })
+//   .then((response) => {
+//     console.log("最後のpromise")
+//     console.log(response)
+//     console.log("終わり")
+//     despatch(Actions.receiveResponse)
+//   })
+// }
 
 export default Actions

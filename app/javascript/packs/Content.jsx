@@ -33,13 +33,6 @@ const TopMenu = props => (
 
 class MainContainer extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      isModalActive: false
-    }
-  }
-
   onChangeField = (e) => {
     var plan = Object.assign({}, this.state);
     plan[e.target.name] = e.target.value
@@ -47,34 +40,26 @@ class MainContainer extends React.Component {
   }
 
   onSubmit = () => {
-    var plan = {
-      location: this.state.location,
-      start_date: this.state.start_date,
-      finish_date: this.state.finish_date,
-      description: this.state.description
-    }
-    this.props.addPlan(plan)
-    this.props.fetchSample()
+    var formData = new FormData(document.getElementById('plans_form'))
+    this.props.modalToggle()
+    this.props.postPlan(formData)
   }
 
   confirmModalToggle = () => {
-    if (this.state.isModalActive) {
-      this.setState({ isModalActive: false })
-    } else {
-      this.setState({ isModalActive: true })
-    }
+    this.props.modalToggle()
   }
 
   render() {
     return (
       <div id="main_container">
-        <form action="javascript:void(0)">
+        <form action="javascript:void(0)" id="plans_form">
           <LocationField { ...this.props } onChangeField={ this.onChangeField } />
           <DateField { ...this.props } onChangeField={ this.onChangeField } />
           <DescriptionField { ...this.props } onChangeField={ this.onChangeField } />
           <button type="submit" className="submit" onClick={ this.confirmModalToggle }>プランを投稿する</button>
         </form>
-        <ConfirmModal { ...this.state } confirmModalToggle={ this.confirmModalToggle } onSubmit={ this.onSubmit } />
+        <ConfirmModal { ...this.props } confirmModalToggle={ this.confirmModalToggle } onSubmit={ this.onSubmit } />
+        <LoadingPanel { ...this.props } />
       </div>
     )
   }
@@ -128,8 +113,28 @@ class ConfirmModal extends React.Component {
               <span>一言:</span>
               <span>{this.props.description}</span>
             </div>
-            <button className="modal_submit submit cancel_button" onClick={ this.props.confirmModalToggle}>プランを修正する</button>
+            <button className="modal_submit submit cancel_button" onClick={ this.props.confirmModalToggle }>プランを修正する</button>
             <button type="submit" className="modal_submit submit" onClick={ this.props.onSubmit }>プランを投稿する</button>
+          </div>
+        </div>
+      )
+    } else {
+      return false
+    }
+  }
+}
+
+class LoadingPanel extends React.Component {
+  render() {
+    if(this.props.isFetching) {
+      return (
+        <div id="confirm_modal">
+          <div id="modal_background"></div>
+          <div id="confirm_content">
+            <h2 className="confirm_title">
+              読み込み中
+            </h2>
+            <div id="loading"></div>
           </div>
         </div>
       )

@@ -1,4 +1,4 @@
-import { ADD_PLAN, HOGE_HOGE } from '../actions/PlanActions'
+import { GET_PLAN, POST_PLAN, MODAL_TOGGLE } from '../actions/PlanActions'
 
 const initialState = {
   plan: {
@@ -6,21 +6,34 @@ const initialState = {
     start_date: '',
     finish_date: '',
     description: '',
-  }
+  },
+  isModalActive: false,
+  isFetching: false
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_PLAN: {
-      console.log(action.value)
-      return Object.assign({}, state, {
-        plan: action.value,
-      });
-    }
-    case HOGE_HOGE: {
-      console.log("HOGE_HOGE呼ばれた")
-      console.log(action.value)
+    case GET_PLAN: {
+      console.log("GET_PLAN呼ばれた")
       return state
+    }
+    case POST_PLAN: {
+      console.log("POST_PLAN呼ばれた")
+      return Object.assign({}, state, {
+        isFetching: true
+      })
+    }
+    case MODAL_TOGGLE: {
+      console.log("MODAL_TOGGLEよばれた")
+      if( state.isModalActive) {
+        return Object.assign({}, state, {
+          isModalActive: false
+        })
+      } else {
+        return Object.assign({}, state, {
+          isModalActive: true
+        })
+      }
     }
     default: {
       return state
