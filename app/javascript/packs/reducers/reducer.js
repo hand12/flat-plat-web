@@ -1,4 +1,4 @@
-import { GET_PLAN, POST_PLAN, MODAL_TOGGLE } from '../actions/PlanActions'
+import { GET_PLAN, POST_PLAN, MODAL_TOGGLE, RECEIVE_RESPONSE } from '../actions/PlanActions'
 
 const initialState = {
   plan: {
@@ -23,8 +23,14 @@ const reducer = (state = initialState, action) => {
         isFetching: true
       })
     }
+    case RECEIVE_RESPONSE: {
+      console.log("RECEIVE_RESPONSE呼ばれた")
+      return Object.assign({}, state, {
+        isFetching: false
+      })
+    }
     case MODAL_TOGGLE: {
-      console.log("MODAL_TOGGLEよばれた")
+      console.log("MODAL_TOGGLE呼ばれた")
       if( state.isModalActive) {
         return Object.assign({}, state, {
           isModalActive: false

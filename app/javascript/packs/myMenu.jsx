@@ -4,25 +4,11 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore } from 'redux'
-import { Provider } from 'react-redux'
-import App from './App.jsx'
-import reducer from './reducers/reducer'
-import thunkMiddleware from 'redux-thunk'
-
-const store = createStore(reducer)
-
-function configureStore() {
-  return createStore(
-    reducer, applyMiddleware(thunkMiddleware)
-  )
-}
+import Root from './containers/Root.jsx'
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <Provider store={ store }>
-      <App />
-    </Provider>,
+    <Root />,
     document.getElementById('react_root').appendChild(document.createElement('div')),
   )
 })
