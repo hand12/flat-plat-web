@@ -12,7 +12,7 @@ class MainContainer extends React.Component {
 
   onSubmit = () => {
     var formData = new FormData(document.getElementById('plans_form'))
-    this.props.modalToggle()
+		this.props.modalToggle()
     this.props.request(formData)
   }
 
@@ -63,68 +63,35 @@ const DescriptionField = props => (
   </div>
 )
 
-// class ConfirmModal extends React.Component {
-//   render() {
-//     let modalContent = this.props.isModalActive ? "ModalIsActive" : "ModalIsNotActive"
-//     return(
-//       <div id="confirm_modal" className= { modalContent }>
-//         <div id="modal_background"></div>
-//         <div id="confirm_content" className= { modalContent } >
-//           <h2 className="confirm_title">
-//             以下の内容でplanを投稿します。
-//           </h2>
-//           <div className="confirm_location">
-//             <span>場所:</span>
-//             <span>{this.props.location}</span>
-//           </div>
-//           <div className="confirm_dates">
-//             <span>日程:</span>
-//             <span>{this.props.start_date}</span>
-//             <span>{this.props.finish_date}</span>
-//           </div>
-//           <div className="confirm_description">
-//             <span>一言:</span>
-//             <span>{this.props.description}</span>
-//           </div>
-//           <button className="modal_submit submit cancel_button" onClick={ this.props.confirmModalToggle }>プランを修正する</button>
-//           <button type="submit" className="modal_submit submit" onClick={ this.props.onSubmit }>プランを投稿する</button>
-//         </div>
-//       </div>
-//     )
-//   }
-// }
-
 class ConfirmModal extends React.Component {
   render() {
-    if (this.props.isModalActive) {
-      return(
-        <div id="confirm_modal">
-          <div id="modal_background"></div>
-          <div id="confirm_content">
-            <h2 className="confirm_title">
-              以下の内容でplanを投稿します。
-            </h2>
-            <div className="confirm_location">
-              <span>場所:</span>
-              <span>{this.props.location}</span>
-            </div>
-            <div className="confirm_dates">
-              <span>日程:</span>
-              <span>{this.props.start_date}</span>
-              <span>{this.props.finish_date}</span>
-            </div>
-            <div className="confirm_description">
-              <span>一言:</span>
-              <span>{this.props.description}</span>
-            </div>
-            <button className="modal_submit submit cancel_button" onClick={ this.props.confirmModalToggle }>プランを修正する</button>
-            <button type="submit" className="modal_submit submit" onClick={ this.props.onSubmit }>プランを投稿する</button>
+		let confirmModalClass = this.props.isModalActive ? "ModalIsActive" : "ModalIsNotActive"
+		let confirmContentClass = this.props.isModalActive ? "ContentIsActive" : "ContentIsNotActive"
+    return(
+      <div id="confirm_modal" className= { confirmModalClass }>
+        <div id="modal_background"></div>
+        <div id="confirm_content" className= { confirmContentClass } >
+          <h2 className="confirm_title">
+            以下の内容でplanを投稿します。
+          </h2>
+          <div className="confirm_location">
+            <span>場所:</span>
+            <span>{this.props.location}</span>
           </div>
+          <div className="confirm_dates">
+            <span>日程:</span>
+            <span>{this.props.start_date}</span>
+            <span>{this.props.finish_date}</span>
+          </div>
+          <div className="confirm_description">
+            <span>一言:</span>
+            <span>{this.props.description}</span>
+          </div>
+          <button className="modal_submit submit cancel_button" onClick={ this.props.confirmModalToggle }>プランを修正する</button>
+          <button type="submit" className="modal_submit submit" onClick={ this.props.onSubmit }>プランを投稿する</button>
         </div>
-      )
-    } else {
-      return false
-    }
+      </div>
+    )
   }
 }
 

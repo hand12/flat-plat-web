@@ -48,7 +48,7 @@ $background-color-block: #343744;
 
 @keyframes popDown {
   0% { transform: translateY(0); }
-  100% { transform: translateY(800px); display: none;}
+  100% { transform: translateY(800px);}
 }
 
 @keyframes button {
@@ -82,7 +82,7 @@ button{
 
 #header {
   width: 100vw;
-  background-color: $background-color;
+  background-color: white;
   border-bottom: 1px solid $header-border-color;
   position: fixed;
   z-index: 1;
@@ -629,9 +629,9 @@ button{
           }
         }
         #confirm_modal {
-          animation-name: fadeIn;
-          animation-duration: 0.3s;
-          animation-timing-function: ease-in;
+          // animation-name: fadeIn;
+          // animation-duration: 0.3s;
+          // animation-timing-function: ease-in;
           #modal_background {
             position: fixed;
             top: 0;
@@ -641,9 +641,9 @@ button{
             background: rgba(0, 0, 0, 0.6);
           }
           #confirm_content {
-            animation-name: popUp;
-            animation-duration: 0.5s;
-            animation-timing-function: ease;
+            // animation-name: popUp;
+            // animation-duration: 0.5s;
+            // animation-timing-function: ease;
             position: fixed;
             top: 150px;
             width: 800px;
@@ -729,8 +729,29 @@ button{
               animation-duration: 0.5s;
               animation-iteration-count: infinite;
             }
-          }
-        }
+					}
+					.ContentIsActive {
+						animation-name: popUp;
+            animation-duration: 0.5s;
+            animation-timing-function: ease;
+					}
+					.ContentIsNotActive {
+						animation-name: popDown;
+            animation-duration: 0.5s;
+            animation-timing-function: ease;
+					}
+				}
+				.ModalIsActive {
+					animation-name: fadeIn;
+          animation-duration: 0.3s;
+          animation-timing-function: ease-in;
+				}
+				.ModalIsNotActive {
+					animation-name: fadeOut;
+          animation-duration: 0.3s;
+					animation-timing-function: ease-in;
+					animation-fill-mode: forwards;
+				}
         .submit {
           display: block;
           margin: 80px auto 10px;

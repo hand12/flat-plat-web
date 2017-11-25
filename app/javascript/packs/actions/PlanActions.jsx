@@ -1,9 +1,8 @@
-import fetch from 'cross-fetch'
-
 export const GET_PLAN = 'GET_PLAN'
 export const POST_PLAN = 'POST_PLAN'
 export const MODAL_TOGGLE = 'MODAL_TOGGLE'
 export const RECEIVE_RESPONSE = 'RECEIVE_RESPONSE'
+export const POST_REQUEST = 'POST_REQUEST'
 
 const Actions = {
   getPlan(value) {
@@ -23,7 +22,13 @@ const Actions = {
       type: RECEIVE_RESPONSE,
       value
     }
-  },
+	},
+	postRequest(value) {
+		return {
+			type: POST_REQUEST,
+			value
+		}
+	},
   modalToggle(value) {
     return {
       type: MODAL_TOGGLE,
@@ -31,8 +36,9 @@ const Actions = {
     }
   },
   request(formData) {
-    console.log("request呼ばれた")
+		console.log("request呼ばれた")
     return (dispatch) => {
+			dispatch(Actions.postRequest())
       const REQUEST_URL = "http://localhost:3002/plans"
       fetch(REQUEST_URL, {
         method: "POST",
@@ -60,7 +66,6 @@ const Actions = {
         console.log("fail")
         console.log(err)
         dispatch(Actions.receiveResponse(err))
-        // dispatch( err => Actions.receiveResponse )
       })
     }
   }

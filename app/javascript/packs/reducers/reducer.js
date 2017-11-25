@@ -1,4 +1,4 @@
-import { GET_PLAN, POST_PLAN, MODAL_TOGGLE, RECEIVE_RESPONSE } from '../actions/PlanActions'
+import { GET_PLAN, POST_PLAN, MODAL_TOGGLE, RECEIVE_RESPONSE, POST_REQUEST } from '../actions/PlanActions'
 
 const initialState = {
   plan: {
@@ -27,6 +27,12 @@ const reducer = (state = initialState, action) => {
       console.log("RECEIVE_RESPONSE呼ばれた")
       return Object.assign({}, state, {
         isFetching: false
+      })
+		}
+		case POST_REQUEST: {
+      console.log("POST_REQUEST呼ばれた")
+      return Object.assign({}, state, {
+        isFetching: true
       })
     }
     case MODAL_TOGGLE: {
