@@ -6,7 +6,7 @@ $complementary-color: #5EA598;
 $complementary-gradi-color: #1b5e20;
 $font-color: #666;
 $background-color: #eee;
-$background-color-block: #343744;
+$background-color-black: #343744;
 
 @mixin clearfix() {
   &:after {
@@ -20,14 +20,37 @@ $background-color-block: #343744;
   margin: 0 auto;
   padding-top: 50px;
   width: 500px;
-  border-bottom: 1px solid $gradiation-main-color;
+  &:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(135deg, $main-color, $gradiation-main-color);
+  }
   input {
     width: 100%;
     color: $font-color;
-    font-size: 24px;
+    font-size: 20px;
     border-style: none;
-    padding-bottom: 5px;
+    padding: 10px;
+    padding-left: 0;
     outline: none;
+  }
+}
+
+@mixin background_image_blur() {
+  &:before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background-image: inherit;
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px);
+    z-index: -1;
   }
 }
 
@@ -132,19 +155,7 @@ button{
   position: relative;
   overflow: hidden;
   z-index: 0;
-  &:before {
-    content: '';
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    background-image: inherit;
-    background-size: cover;
-    background-position: center;
-    filter: blur(5px);
-    z-index: -1;
-  }
+  @include background_image_blur();
   #message-title {
     margin: 0 auto;
     margin-top: 300px;
@@ -333,15 +344,15 @@ button{
   align-items: stretch;
   $left_box_width: 400px;
   #left_box {
-    z-index: -10;
-    background: $background-color-block;
+    z-index: 0;
+    background: $background-color-black;
     width: $left_box_width;
     height: 100vh;
     box-sizing: border-box;
-    border-right: 5px solid $border-color;
     display: inline-flex;
     flex-direction: column;
     justify-content: center;
+    box-shadow: 2px 0 16px 2px rgba(0, 0, 0, 0.4);
     #profile_box {
       width: 100%;
       padding: 20px;
@@ -360,18 +371,6 @@ button{
           border-radius: inherit;
           object-fit: cover;
         }
-        // &:after {
-        //   z-index: -1;
-        //   position: absolute;
-        //   top: -5px;
-        //   left: -5px;
-        //   border-radius: calc(#{$image_size} + 10px);
-        //   content: '';
-        //   width: calc(#{$image_size} + 10px);
-        //   height: calc(#{$image_size} + 10px);
-        //   background: linear-gradient(135deg, $main-color, darken($main-color, 10));
-        //   box-shadow: 0 1px 2px 1px #999;
-        // }
       }
       #name_field {
         color: white;
@@ -380,21 +379,8 @@ button{
         padding: 10px 30px;
         text-align: center;
         border-radius: 50px;
-        // background-color: white;
-        // background: linear-gradient(-135deg, lighten($main-color, 10), lighten($gradiation-main-color, 10));
+        background: linear-gradient(-135deg, darken($main-color, 5), darken($gradiation-main-color, 5));
         position: relative;
-        &:after {
-          z-index: -1;
-          position: absolute;
-          top: -5px;
-          left: -5px;
-          border-radius: inherit;
-          content: '';
-          width: calc(100% + 10px);
-          height: calc(100% + 10px);
-          background: linear-gradient(-135deg, darken($main-color, 5), darken($gradiation-main-color, 5));
-          // box-shadow: 0 1px 2px 1px #999;
-        }
       }
       #introduce_field {
         color: white;
@@ -404,7 +390,7 @@ button{
           margin: 10px auto;
           content: '';
           width: 200px;
-          height: 1px;
+          height: 2px;
           background: linear-gradient(135deg, $main-color, $gradiation-main-color);
         }
       }
@@ -418,11 +404,8 @@ button{
           margin-right: 10px;
           color: $gradiation-main-color;
           background-color: white;
-          // background: linear-gradient(-135deg, lighten($main-color, 10), lighten($gradiation-main-color, 10));
-          // -webkit-text-fill-color: transparent;
-          // -webkit-background-clip: text;
           border-radius: 18px;
-          &:after {
+          &:before {
             z-index: -1;
             content: '';
             position: absolute;
@@ -441,63 +424,36 @@ button{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    position: relative;
     height: 100vh;
     width: calc(100vw - #{$left_box_width});
-    // min-width: 1200px;
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: center;
-    background: lighten($background-color-block, 70);
+    background-position: center;
+    background-size: cover;
     overflow-x: scroll;
+    box-shadow: 2px 0 16px -4px rgba(0, 0, 0, 0.4) inset;
     #content {
-      margin: 0 auto;
-      box-sizing: border-box;
-      width: 900px;
-      height: 700px;
-      #top_menu {
-        margin: 0 auto;
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        .button {
-          box-sizing: border-box;
-          position: relative;
-          font-size: 24px;
-          padding: 10px 20px;
-          background-color: white;
-          // border-bottom: 5px solid $main-color;
-          background: white;
-          box-shadow: 0 1px 3px 1px #999;
-          transition: 0.3s;
-          &:after {
-            position: absolute;
-            box-sizing: border-box;
-            bottom: 0;
-            left: 0;
-            content: '';
-            display: block;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(-135deg, darken($main-color, 5), darken($gradiation-main-color, 5));
-          }
-          &:hover {
-            cursor: pointer;
-            color: white;
-            box-shadow: none;
-            background: linear-gradient(-135deg, darken($main-color, 5), darken($gradiation-main-color, 5));
-          }
-        }
-      }
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       #main_container {
+        z-index: 1;
+        width: 800px;
+        margin: 0 auto;
+        padding: 50px;
         box-sizing: border-box;
-        width: 100%;
-        height: 100%;
-        margin-top: 20px;
-        background-color: white;
-        box-shadow: 0 4px 16px 4px #ccc;
-        height: 600px;
+        background: white;
+        border-radius: 2.5px;
+        box-shadow: 0 2px 16px 2px rgba(0, 0, 0, 0.4);
+        position: relative;
         #place_field {
+          label {
+            color: lighten($font-color, 20);
+            display: block;
+            margin-bottom: 5px;
+            font-size: 16px;
+          }
           @include input_field();
         }
         #date_field {
@@ -584,7 +540,9 @@ button{
             padding-bottom: 10px;
             box-sizing: border-box;
             label {
-              font-size: 24px;
+              color: lighten($font-color, 20);
+              display: block;
+              font-size: 16px;
               padding: 0 10px;
               margin-bottom: 10px;
             }
@@ -592,7 +550,7 @@ button{
               position: relative;
               color: lighten($font-color, 10);
               margin-left: 10px;
-              font-size: 16px;
+              font-size: 20px;
               border: none;
               padding: 5px 10px;
               border-radius: 20px;
@@ -617,21 +575,26 @@ button{
           }
         }
         #description_field {
+          label {
+            color: lighten($font-color, 20);
+            display: block;
+            margin-bottom: 5px;
+            font-size: 16px;
+          }
           @include input_field();
           textarea {
-            font-size: 24px;
+            font-size: 20px;
             width: 100%;
             color: $font-color;
-            font-size: 24px;
             border-style: none;
             padding-bottom: 5px;
             outline: none;
           }
         }
         #confirm_modal {
-          // animation-name: fadeIn;
-          // animation-duration: 0.3s;
-          // animation-timing-function: ease-in;
+          animation-name: fadeIn;
+          animation-duration: 0.3s;
+          animation-timing-function: ease-in;
           #modal_background {
             position: fixed;
             top: 0;
@@ -641,19 +604,23 @@ button{
             background: rgba(0, 0, 0, 0.6);
           }
           #confirm_content {
-            // animation-name: popUp;
-            // animation-duration: 0.5s;
-            // animation-timing-function: ease;
-            position: fixed;
-            top: 150px;
-            width: 800px;
+            animation-name: popUp;
+            animation-duration: 0.5s;
+            animation-timing-function: ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+            box-sizing: border-box;
+            width: 100%;
             background: white;
             border-radius: 2.5px;
             box-shadow: 0 2px 8px #777;
             padding: 50px;
+            margin: 0 auto;
             text-align: center;
             .confirm_title {
               font-size: 32px;
+              font-weight: initial;
               &:after {
                 content: '';
                 width: 200px;
@@ -671,7 +638,7 @@ button{
               text-align: left;
               border-bottom: 1px solid $main-color;
               span {
-                font-size: 24px;
+                font-size: 20px;
                 margin-right: 20px;
                 &:last-child {
                   font-weight: bold;
@@ -691,7 +658,7 @@ button{
                 margin-right: 0;
                 &:first-child {
                   font-weight: normal;
-                  font-size: 24px;
+                  font-size: 20px;
                   margin-right: 20px;
                 }
                 &:last-child {
@@ -708,7 +675,7 @@ button{
               margin-top: 50px;
               text-align: left;
               span {
-                font-size: 24px;
+                font-size: 20px;
                 margin-right: 20px;
                 &:last-child {
                   display: block;
@@ -730,27 +697,6 @@ button{
               animation-iteration-count: infinite;
             }
 					}
-					.ContentIsActive {
-						animation-name: popUp;
-            animation-duration: 0.5s;
-            animation-timing-function: ease;
-					}
-					.ContentIsNotActive {
-						animation-name: popDown;
-            animation-duration: 0.5s;
-            animation-timing-function: ease;
-					}
-				}
-				.ModalIsActive {
-					animation-name: fadeIn;
-          animation-duration: 0.3s;
-          animation-timing-function: ease-in;
-				}
-				.ModalIsNotActive {
-					animation-name: fadeOut;
-          animation-duration: 0.3s;
-					animation-timing-function: ease-in;
-					animation-fill-mode: forwards;
 				}
         .submit {
           display: block;

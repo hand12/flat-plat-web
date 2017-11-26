@@ -36,7 +36,7 @@ const Actions = {
     }
   },
   request(formData) {
-		console.log("request呼ばれた")
+    console.log("request呼ばれた")
     return (dispatch) => {
 			dispatch(Actions.postRequest())
       const REQUEST_URL = "http://localhost:3002/plans"
