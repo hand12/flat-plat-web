@@ -3,6 +3,7 @@ export const POST_PLAN = 'POST_PLAN'
 export const MODAL_TOGGLE = 'MODAL_TOGGLE'
 export const RECEIVE_RESPONSE = 'RECEIVE_RESPONSE'
 export const POST_REQUEST = 'POST_REQUEST'
+export const UPDATE_STATE_PLAN = 'UPDATE_STATE_PLAN'
 
 const Actions = {
   getPlan(value) {
@@ -28,7 +29,13 @@ const Actions = {
 			type: POST_REQUEST,
 			value
 		}
-	},
+  },
+  updateStatePlan(value) {
+    return {
+      type: UPDATE_STATE_PLAN,
+      value
+    }
+  },
   modalToggle(value) {
     return {
       type: MODAL_TOGGLE,
