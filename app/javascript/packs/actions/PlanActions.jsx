@@ -4,6 +4,7 @@ export const MODAL_TOGGLE = 'MODAL_TOGGLE'
 export const RECEIVE_RESPONSE = 'RECEIVE_RESPONSE'
 export const POST_REQUEST = 'POST_REQUEST'
 export const UPDATE_STATE_PLAN = 'UPDATE_STATE_PLAN'
+export const POST_COMPLETE = 'POST_COMPLETE'
 
 const Actions = {
   getPlan(value) {
@@ -42,6 +43,12 @@ const Actions = {
       value
     }
   },
+  postComplete(value) {
+    return {
+      type: POST_COMPLETE,
+      value
+    }
+  },
   request(formData) {
     console.log("request呼ばれた")
     return (dispatch) => {
@@ -67,7 +74,8 @@ const Actions = {
         console.log("最後のpromise")
         console.log(response)
         console.log("終わり")
-        // dispatch(Actions.receiveResponse(response))
+        dispatch(Actions.receiveResponse(response))
+        dispatch(Actions.postComplete(response))
       })
       .catch((err) => {
         console.log("fail")

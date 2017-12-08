@@ -6,12 +6,7 @@ class MainContainer extends React.Component {
 
   onSubmit = () => {
     var formData = new FormData(document.getElementById('plans_form'))
-    formData.append('plan[location]', this.state.plan.location)
-    formData.append('plan[start_date]', this.state.plan.start_date)
-    formData.append('plan[finish_date]', this.state.plan.finish_date)
-    formData.append('plan[description]', this.state.plan.description)
-
-		this.props.modalToggle()
+    this.props.modalToggle()
     this.props.request(formData)
   }
 
@@ -21,6 +16,10 @@ class MainContainer extends React.Component {
     //valueもその中で渡す。
     this.updatePlan()
     this.props.modalToggle()
+  }
+
+  closeModal = () => {
+    var modal = document.getElementById('confirm_modal')
   }
 
   updatePlan = () => {
@@ -44,6 +43,7 @@ class MainContainer extends React.Component {
           </form>
           <ConfirmModal { ...this.props } confirmModalToggle={ this.confirmModalToggle } onSubmit={ this.onSubmit } />
           <LoadingPanel { ...this.props } />
+          <CompletePanel { ...this.props } />
         </div>
       </div>
     )
@@ -53,7 +53,7 @@ class MainContainer extends React.Component {
 const LocationField = props => (
   <div id="place_field">
     <label>どちらまで</label>
-    <input id="location_field" placeholder="北海道旭川市" name="location" defaultValue={ props.plan.location } />
+    <input id="location_field" placeholder="北海道旭川市" name="location[name]" defaultValue={ props.plan.location } />
   </div>
 )
 
@@ -61,11 +61,11 @@ const DateField = props => (
   <div id="date_field">
     <div className="date_container">
       <label htmlFor="departure_date">いつから</label>
-      <input type="date" id="departure_date" name="start_date" defaultValue={ props.plan.start_date } />
+      <input type="date" id="departure_date" name="plan[start_date]" defaultValue={ props.plan.start_date } />
     </div>
     <div className="date_container">
       <label htmlFor="come_back_date">いつまで</label>
-      <input type="date" id="come_back_date" name="finish_date" defaultValue={ props.plan.finish_date } />
+      <input type="date" id="come_back_date" name="plan[finish_date]" defaultValue={ props.plan.finish_date } />
     </div>
   </div>
 )
@@ -73,7 +73,7 @@ const DateField = props => (
 const DescriptionField = props => (
   <div id="description_field">
     <label>どんな旅にしたいですか？</label>
-    <textarea id="description_area" rows="5" placeholder="美味しいものをたくさん食べたい！" name="description" defaultValue={ props.plan.description } />
+    <textarea id="description_area" rows="5" placeholder="美味しいものをたくさん食べたい！" name="plan[description]" defaultValue={ props.plan.description } />
   </div>
 )
 
@@ -156,6 +156,25 @@ class LoadingPanel extends React.Component {
               読み込み中
             </h2>
             <div id="loading"></div>
+          </div>
+        </div>
+      )
+    } else {
+      return false
+    }
+  }
+}
+
+class CompletePanel extends React.Component {
+  render() {
+    if(this.props.isComplete) {
+      return (
+        <div id="confirm_modal">
+          <div id="modal_background"></div>
+          <div id="confirm_content">
+            <h2 className="confirm_title">
+              投稿が完了しました。
+            </h2>
           </div>
         </div>
       )

@@ -1,4 +1,4 @@
-import { GET_PLAN, POST_PLAN, MODAL_TOGGLE, RECEIVE_RESPONSE, POST_REQUEST, UPDATE_STATE_PLAN } from '../actions/PlanActions'
+import { GET_PLAN, POST_PLAN, MODAL_TOGGLE, RECEIVE_RESPONSE, POST_REQUEST, UPDATE_STATE_PLAN, POST_COMPLETE } from '../actions/PlanActions'
 
 const initialState = {
   plan: {
@@ -8,7 +8,8 @@ const initialState = {
     description: '',
   },
   isModalActive: false,
-  isFetching: false
+  isFetching: false,
+  isComplete: false,
 }
 
 const reducer = (state = initialState, action) => {
@@ -50,6 +51,18 @@ const reducer = (state = initialState, action) => {
       } else {
         return Object.assign({}, state, {
           isModalActive: true
+        })
+      }
+    }
+    case POST_COMPLETE: {
+      console.log("POST_COMPLETE呼ばれた")
+      if( state.isComplete) {
+        return Object.assign({}, state, {
+          isComplete: false
+        })
+      } else {
+        return Object.assign({}, state, {
+          isComplete: true
         })
       }
     }
